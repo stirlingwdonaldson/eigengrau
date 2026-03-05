@@ -27,7 +27,7 @@ return {
 	magenta = "#e846a0", -- types, interfaces, classes, modules
 	blue    = "#3ea8ff", -- keywords: import, const, function, if, for, return
 	cyan    = "#40d0c0", -- functions, methods, calls, links, tags, directories
-	green   = "#859900", -- strings, characters, additions, success
+	green   = "#00cc66", -- strings, characters, additions, success
 	violet  = "#8a8ef0", -- (unused by init.lua, available for extensions)
 
 	-- ── Derived (dimmed variants for subtle contexts) ───────
