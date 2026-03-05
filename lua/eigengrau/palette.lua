@@ -11,32 +11,32 @@
 
 return {
 	-- ── Base tones (monotone luminance ramp) ────────────────
-	base03 = "#002b36", -- darkest bg: floats, sidebars
+	base03 = "#0a1014", -- darkest bg: floats, sidebars
 	base02 = "#000000", -- main editor bg
-	base01 = "#586e75", -- bg emphasis: cursorline, selection
-	base00 = "#657b83", -- UI chrome: borders, statusline bg
-	base0  = "#839496", -- default foreground (body text)
-	base1  = "#93a1a1", -- emphasized content: active line nr
-	base2  = "#eee8d5", -- strong emphasis: titles, bold text
-	base3  = "#fdf6e3", -- brightest fg: cursor, inverted text
+	base01 = "#1a2028", -- bg emphasis: cursorline, selection
+	base00 = "#6e7a85", -- UI chrome: borders, statusline bg, comments
+	base0  = "#b0bcc6", -- default foreground (body text)
+	base1  = "#cdd6dc", -- emphasized content: active line nr
+	base2  = "#f0ece0", -- strong emphasis: titles, bold text
+	base3  = "#ffffff", -- brightest fg: cursor, inverted text
 
-	-- ── Accent colors (8 hues, perceptually uniform) ────────
-	yellow  = "#b58900", -- constants, numbers, booleans
-	orange  = "#cb4b16", -- escape chars, regex, special strings
-	red     = "#dc322f", -- errors, deletions, dangerous builtins
-	magenta = "#d33682", -- types, interfaces, classes, modules
-	blue    = "#268bd2", -- keywords: import, const, function, if, for, return
-	cyan    = "#2aa198", -- functions, methods, calls, links, tags, directories
-	green   = "#859900", -- strings, characters, additions, success
-	violet  = "#6c71c4", -- (unused by init.lua, available for extensions)
+	-- ── Accent colors (8 hues, boosted saturation + brightness) ──
+	yellow  = "#e0ad00", -- constants, numbers, booleans
+	orange  = "#f06020", -- escape chars, regex, special strings
+	red     = "#f04040", -- errors, deletions, dangerous builtins
+	magenta = "#e846a0", -- types, interfaces, classes, modules
+	blue    = "#3ea8ff", -- keywords: import, const, function, if, for, return
+	cyan    = "#40d0c0", -- functions, methods, calls, links, tags, directories
+	green   = "#a0c800", -- strings, characters, additions, success
+	violet  = "#8a8ef0", -- (unused by init.lua, available for extensions)
 
 	-- ── Derived (dimmed variants for subtle contexts) ───────
-	red_dim     = "#8b1a1a", -- deprecated strikethrough
-	yellow_dim  = "#7a5c00", -- muted emphasis
-	blue_dim    = "#1a4f6e", -- fold column bg
-	green_dim   = "#0a2a10", -- diff add bg
-	red_bg      = "#2a0f0f", -- diff delete bg, error virt text bg
-	yellow_bg   = "#2a2000", -- diff change bg, warn virt text bg
-	blue_bg     = "#0a1a2a", -- info virt text bg
-	cyan_bg     = "#0a2825", -- hint virt text bg
+	red_dim     = "#a02020", -- deprecated strikethrough
+	yellow_dim  = "#8a6a00", -- muted emphasis
+	blue_dim    = "#1e5a80", -- fold column bg
+	green_dim   = "#0e3218", -- diff add bg
+	red_bg      = "#301010", -- diff delete bg, error virt text bg
+	yellow_bg   = "#302800", -- diff change bg, warn virt text bg
+	blue_bg     = "#0e1e30", -- info virt text bg
+	cyan_bg     = "#0e302a", -- hint virt text bg
 }
