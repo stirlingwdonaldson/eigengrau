@@ -13,251 +13,322 @@ function M.load()
 
 	local c = require("eigengrau.palette")
 
+	-- ═══════════════════════════════════════════════════════════
+	-- SEMANTIC KEY:
+	--
+	--   blue     → keywords (import, const, function, if, for, return)
+	--   cyan     → functions, methods, calls, links, tags, directories
+	--   magenta  → types, interfaces, classes, modules
+	--   green    → strings, characters
+	--   yellow   → constants, numbers, booleans
+	--   orange   → escape chars, regex, special strings
+	--   red      → errors, dangerous builtins, deletions
+	--
+	--   base0    → default body text, identifiers, variables
+	--   base00   → comments (low contrast, recedes)
+	--   base1    → emphasized text (active line nr)
+	--   base2    → strong emphasis (titles, bold)
+	-- ═══════════════════════════════════════════════════════════
+
 	-- ── Editor ──────────────────────────────────────────────
-	hi("Normal",							{ fg = c.fg0, bg = c.bg1 })
-	hi("NormalFloat",						{ fg = c.fg0, bg = c.bg0 })
-	hi("FloatBorder",						{ fg = c.bg4, bg = c.bg0 })
-	hi("FloatTitle",						{ fg = c.orange, bg = c.bg0, bold = true })
-	hi("Cursor",							{ fg = c.bg1, bg = c.fg0 })
-	hi("CursorLine",						{ bg = c.bg2 })
-	hi("CursorColumn",					{ bg = c.bg2 })
-	hi("ColorColumn",						{ bg = c.bg2 })
-	hi("LineNr",							{ fg = c.fg3 })
-	hi("CursorLineNr",					{ fg = c.orange, bold = true })
-	hi("SignColumn",						{ bg = c.bg1 })
-	hi("VertSplit",						{ fg = c.bg3 })
-	hi("WinSeparator",					{ fg = c.bg3 })
-	hi("Folded",							{ fg = c.fg2, bg = c.bg2 })
-	hi("FoldColumn",						{ fg = c.fg3, bg = c.bg1 })
-	hi("NonText",							{ fg = c.fg3 })
-	hi("SpecialKey",						{ fg = c.fg3 })
-	hi("Whitespace",						{ fg = c.bg3 })
-	hi("EndOfBuffer",						{ fg = c.bg1 })
+	hi("Normal",							{ fg = c.base0, bg = c.base02 })
+	hi("NormalFloat",						{ fg = c.base0, bg = c.base03 })
+	hi("FloatBorder",						{ fg = c.base00, bg = c.base03 })
+	hi("FloatTitle",						{ fg = c.base2, bg = c.base03, bold = true })
+	hi("Cursor",							{ fg = c.base02, bg = c.base3 })
+	hi("CursorLine",						{ bg = c.base01 })
+	hi("CursorColumn",						{ bg = c.base01 })
+	hi("ColorColumn",						{ bg = c.base01 })
+	hi("LineNr",							{ fg = c.base00 })
+	hi("CursorLineNr",						{ fg = c.base1, bold = true })
+	hi("SignColumn",						{ bg = c.base02 })
+	hi("VertSplit",							{ fg = c.base00 })
+	hi("WinSeparator",						{ fg = c.base00 })
+	hi("Folded",							{ fg = c.base0, bg = c.base01 })
+	hi("FoldColumn",						{ fg = c.base00, bg = c.base02 })
+	hi("NonText",							{ fg = c.base00 })
+	hi("SpecialKey",						{ fg = c.base00 })
+	hi("Whitespace",						{ fg = c.base01 })
+	hi("EndOfBuffer",						{ fg = c.base02 })
 
 	-- ── Selections and Search ───────────────────────────────
-	hi("Visual",							{ bg = c.bg3 })
-	hi("VisualNOS",						{ bg = c.bg3 })
-	hi("Search",							{ fg = c.bg1, bg = c.yellow })
-	hi("IncSearch",						{ fg = c.bg1, bg = c.orange })
-	hi("CurSearch",						{ fg = c.bg1, bg = c.orange })
-	hi("Substitute",						{ fg = c.bg1, bg = c.red })
+	hi("Visual",							{ bg = c.base00 })
+	hi("VisualNOS",							{ bg = c.base00 })
+	hi("Search",							{ fg = c.base02, bg = c.yellow })
+	hi("IncSearch",							{ fg = c.base02, bg = c.yellow })
+	hi("CurSearch",							{ fg = c.base02, bg = c.yellow })
+	hi("Substitute",						{ fg = c.base02, bg = c.red })
 
 	-- ── Popups and Menus ────────────────────────────────────
-	hi("Pmenu",								{ fg = c.fg1, bg = c.bg2 })
-	hi("PmenuSel",							{ fg = c.fg0, bg = c.bg4 })
-	hi("PmenuSbar",						{ bg = c.bg3 })
-	hi("PmenuThumb",						{ bg = c.fg3 })
-	hi("WildMenu",							{ fg = c.bg1, bg = c.blue })
+	hi("Pmenu",								{ fg = c.base0, bg = c.base01 })
+	hi("PmenuSel",							{ fg = c.base2, bg = c.base00 })
+	hi("PmenuSbar",							{ bg = c.base01 })
+	hi("PmenuThumb",						{ bg = c.base00 })
+	hi("WildMenu",							{ fg = c.base02, bg = c.cyan })
 
 	-- ── Statusline and Tabline ──────────────────────────────
-	hi("StatusLine",						{ fg = c.fg1, bg = c.bg3 })
-	hi("StatusLineNC",					{ fg = c.fg3, bg = c.bg2 })
-	hi("TabLine",							{ fg = c.fg2, bg = c.bg2 })
-	hi("TabLineFill",						{ bg = c.bg0 })
-	hi("TabLineSel",						{ fg = c.fg0, bg = c.bg1 })
-	hi("WinBar",							{ fg = c.fg1, bg = c.bg1 })
-	hi("WinBarNC",							{ fg = c.fg3, bg = c.bg1 })
+	hi("StatusLine",						{ fg = c.base1, bg = c.base00 })
+	hi("StatusLineNC",						{ fg = c.base00, bg = c.base01 })
+	hi("TabLine",							{ fg = c.base0, bg = c.base01 })
+	hi("TabLineFill",						{ bg = c.base03 })
+	hi("TabLineSel",						{ fg = c.base2, bg = c.base02 })
+	hi("WinBar",							{ fg = c.base1, bg = c.base02 })
+	hi("WinBarNC",							{ fg = c.base00, bg = c.base02 })
 
 	-- ── Messages ────────────────────────────────────────────
-	hi("MsgArea",							{ fg = c.fg1 })
-	hi("ModeMsg",							{ fg = c.blue, bold = true })
-	hi("MoreMsg",							{ fg = c.green })
-	hi("WarningMsg",						{ fg = c.yellow })
+	hi("MsgArea",							{ fg = c.base0 })
+	hi("ModeMsg",							{ fg = c.cyan, bold = true })
+	hi("MoreMsg",							{ fg = c.blue })
+	hi("WarningMsg",						{ fg = c.orange })
 	hi("ErrorMsg",							{ fg = c.red, bold = true })
-	hi("Question",							{ fg = c.green })
-	hi("Title",								{ fg = c.orange, bold = true })
-	hi("Directory",						{ fg = c.blue })
-	hi("MatchParen",						{ fg = c.orange, bg = c.bg3, bold = true })
+	hi("Question",							{ fg = c.blue })
+	hi("Title",								{ fg = c.base2, bold = true })
+	hi("Directory",							{ fg = c.cyan })
+	hi("MatchParen",						{ fg = c.base2, bg = c.base00, bold = true })
 
 	-- ── Diff ────────────────────────────────────────────────
-	hi("DiffAdd",							{ fg = c.green, bg = "#1A2E1A" })
-	hi("DiffChange",						{ fg = c.yellow, bg = "#2E2A1A" })
-	hi("DiffDelete",						{ fg = c.red, bg = "#2E1A1A" })
-	hi("DiffText",							{ fg = c.orange, bg = "#3E2A1A", bold = true })
+	hi("DiffAdd",							{ fg = c.green, bg = c.green_dim })
+	hi("DiffChange",						{ fg = c.yellow, bg = c.yellow_bg })
+	hi("DiffDelete",						{ fg = c.red, bg = c.red_bg })
+	hi("DiffText",							{ fg = c.yellow, bg = c.yellow_bg, bold = true })
 
 	-- ── Diagnostics ─────────────────────────────────────────
-	hi("DiagnosticError",				{ fg = c.red })
-	hi("DiagnosticWarn",					{ fg = c.yellow })
+	hi("DiagnosticError",					{ fg = c.red })
+	hi("DiagnosticWarn",					{ fg = c.orange })
 	hi("DiagnosticInfo",					{ fg = c.cyan })
-	hi("DiagnosticHint",					{ fg = c.teal })
-	hi("DiagnosticOk",					{ fg = c.green })
-	hi("DiagnosticUnderlineError",	{ undercurl = true, sp = c.red })
-	hi("DiagnosticUnderlineWarn",	   { undercurl = true, sp = c.yellow })
-	hi("DiagnosticUnderlineInfo",	   { undercurl = true, sp = c.cyan })
-	hi("DiagnosticUnderlineHint",	   { undercurl = true, sp = c.teal })
-	hi("DiagnosticVirtualTextError",	{ fg = c.red, bg = "#2A1215" })
-	hi("DiagnosticVirtualTextWarn",	{ fg = c.yellow, bg = "#2A2815" })
-	hi("DiagnosticVirtualTextInfo",	{ fg = c.cyan, bg = "#152A2A" })
-	hi("DiagnosticVirtualTextHint",	{ fg = c.teal, bg = "#152A25" })
+	hi("DiagnosticHint",					{ fg = c.magenta })
+	hi("DiagnosticOk",						{ fg = c.green })
+	hi("DiagnosticUnderlineError",			{ undercurl = true, sp = c.red })
+	hi("DiagnosticUnderlineWarn",			{ undercurl = true, sp = c.orange })
+	hi("DiagnosticUnderlineInfo",			{ undercurl = true, sp = c.cyan })
+	hi("DiagnosticUnderlineHint",			{ undercurl = true, sp = c.magenta })
+	hi("DiagnosticVirtualTextError",		{ fg = c.red, bg = c.red_bg })
+	hi("DiagnosticVirtualTextWarn",			{ fg = c.orange, bg = c.yellow_bg })
+	hi("DiagnosticVirtualTextInfo",			{ fg = c.cyan, bg = c.blue_bg })
+	hi("DiagnosticVirtualTextHint",			{ fg = c.magenta, bg = c.cyan_bg })
 
 	-- ── Syntax (legacy Vim groups) ──────────────────────────
-	hi("Comment",							{ fg = c.fg2, italic = true })
+	--   blue=keywords, cyan=functions, magenta=types,
+	--   green=strings, yellow=constants, orange=special, red=errors
+	hi("Comment",							{ fg = c.base00, italic = true })
 	hi("Constant",							{ fg = c.yellow })
 	hi("String",							{ fg = c.green })
-	hi("Character",						{ fg = c.green })
-	hi("Number",							{ fg = c.orange })
-	hi("Boolean",							{ fg = c.orange })
-	hi("Float",								{ fg = c.orange })
-	hi("Identifier",						{ fg = c.fg0 })
-	hi("Function",							{ fg = c.blue })
-	hi("Statement",						{ fg = c.blue, bold = true })
-	hi("Conditional",						{ fg = c.blue, bold = true })
-	hi("Repeat",							{ fg = c.blue, bold = true })
-	hi("Label",								{ fg = c.cyan })
-	hi("Operator",							{ fg = c.fg1 })
-	hi("Keyword",							{ fg = c.blue, bold = true })
-	hi("Exception",						{ fg = c.red })
-	hi("PreProc",							{ fg = c.magenta })
-	hi("Include",							{ fg = c.magenta })
-	hi("Define",							{ fg = c.magenta })
-	hi("Macro",								{ fg = c.magenta })
-	hi("PreCondit",						{ fg = c.magenta })
-	hi("Type",								{ fg = c.cyan })
-	hi("StorageClass",					{ fg = c.blue })
-	hi("Structure",						{ fg = c.cyan })
-	hi("Typedef",							{ fg = c.cyan })
-	hi("Special",							{ fg = c.teal })
-	hi("SpecialChar",						{ fg = c.teal })
-	hi("Tag",								{ fg = c.blue_bright })
-	hi("Delimiter",						{ fg = c.fg1 })
-	hi("SpecialComment",					{ fg = c.fg2, italic = true })
+	hi("Character",							{ fg = c.green })
+	hi("Number",							{ fg = c.yellow })
+	hi("Boolean",							{ fg = c.yellow })
+	hi("Float",								{ fg = c.yellow })
+	hi("Identifier",						{ fg = c.base0 })
+	hi("Function",							{ fg = c.cyan })
+	hi("Statement",							{ fg = c.blue })
+	hi("Conditional",						{ fg = c.blue })
+	hi("Repeat",							{ fg = c.blue })
+	hi("Label",								{ fg = c.blue })
+	hi("Operator",							{ fg = c.base0 })
+	hi("Keyword",							{ fg = c.blue })
+	hi("Exception",							{ fg = c.blue })
+	hi("PreProc",							{ fg = c.blue })
+	hi("Include",							{ fg = c.blue })
+	hi("Define",							{ fg = c.blue })
+	hi("Macro",								{ fg = c.blue })
+	hi("PreCondit",							{ fg = c.blue })
+	hi("Type",								{ fg = c.magenta })
+	hi("StorageClass",						{ fg = c.blue })
+	hi("Structure",							{ fg = c.magenta })
+	hi("Typedef",							{ fg = c.magenta })
+	hi("Special",							{ fg = c.orange })
+	hi("SpecialChar",						{ fg = c.orange })
+	hi("Tag",								{ fg = c.cyan })
+	hi("Delimiter",							{ fg = c.base0 })
+	hi("SpecialComment",					{ fg = c.base00, italic = true })
 	hi("Debug",								{ fg = c.red })
-	hi("Underlined",						{ fg = c.blue_bright, underline = true })
-	hi("Ignore",							{ fg = c.fg3 })
+	hi("Underlined",						{ fg = c.cyan, underline = true })
+	hi("Ignore",							{ fg = c.base00 })
 	hi("Error",								{ fg = c.red, bold = true })
-	hi("Todo",								{ fg = c.yellow, bg = c.bg3, bold = true })
+	hi("Todo",								{ fg = c.orange, bold = true })
 
 	-- ── Treesitter ──────────────────────────────────────────
-	hi("@variable",						{ fg = c.fg0 })
-	hi("@variable.builtin",			   { fg = c.red })
-	hi("@variable.parameter",		   { fg = c.fg1, italic = true })
-	hi("@variable.member",				{ fg = c.fg0 })
-	hi("@constant",						{ fg = c.yellow })
-	hi("@constant.builtin",			   { fg = c.orange })
-	hi("@constant.macro",				{ fg = c.magenta })
-	hi("@module",							{ fg = c.cyan })
-	hi("@label",							{ fg = c.cyan })
+	-- Variables and identifiers: base tones (no color noise)
+	hi("@variable",							{ fg = c.base0 })
+	hi("@variable.builtin",				{ fg = c.red })
+	hi("@variable.parameter",				{ fg = c.base0, italic = true })
+	hi("@variable.member",					{ fg = c.base0 })
+
+	-- Constants and literals: yellow
+	hi("@constant",							{ fg = c.yellow })
+	hi("@constant.builtin",				{ fg = c.yellow })
+	hi("@constant.macro",					{ fg = c.yellow })
+
+	-- Modules and labels
+	hi("@module",							{ fg = c.magenta })
+	hi("@label",							{ fg = c.blue })
+
+	-- Strings: green
 	hi("@string",							{ fg = c.green })
-	hi("@string.escape",					{ fg = c.teal })
-	hi("@string.regex",					{ fg = c.teal })
-	hi("@string.special",				{ fg = c.teal })
+	hi("@string.escape",					{ fg = c.orange })
+	hi("@string.regex",						{ fg = c.orange })
+	hi("@string.special",					{ fg = c.orange })
+	hi("@string.documentation",				{ fg = c.base00, italic = true })
 	hi("@character",						{ fg = c.green })
-	hi("@number",							{ fg = c.orange })
-	hi("@boolean",							{ fg = c.orange })
-	hi("@float",							{ fg = c.orange })
-	hi("@function",						{ fg = c.blue })
-	hi("@function.builtin",			   { fg = c.blue_bright })
-	hi("@function.call",					{ fg = c.blue })
-	hi("@function.macro",				{ fg = c.magenta })
-	hi("@method",							{ fg = c.blue })
-	hi("@method.call",					{ fg = c.blue })
-	hi("@constructor",					{ fg = c.cyan })
-	hi("@keyword",							{ fg = c.blue, bold = true })
-	hi("@keyword.function",			   { fg = c.blue, bold = true })
-	hi("@keyword.operator",			   { fg = c.blue })
-	hi("@keyword.return",				{ fg = c.blue, bold = true })
-	hi("@keyword.import",				{ fg = c.magenta })
-	hi("@conditional",					{ fg = c.blue, bold = true })
-	hi("@repeat",							{ fg = c.blue, bold = true })
-	hi("@exception",						{ fg = c.red })
-	hi("@type",								{ fg = c.cyan })
-	hi("@type.builtin",					{ fg = c.cyan })
-	hi("@type.qualifier",				{ fg = c.blue })
-	hi("@type.definition",				{ fg = c.cyan })
-	hi("@attribute",						{ fg = c.magenta })
-	hi("@property",						{ fg = c.fg0 })
-	hi("@field",							{ fg = c.fg0 })
-	hi("@parameter",						{ fg = c.fg1, italic = true })
-	hi("@punctuation.bracket",	   	{ fg = c.fg2 })
-	hi("@punctuation.delimiter",  	{ fg = c.fg2 })
-	hi("@punctuation.special",	   	{ fg = c.teal })
-	hi("@comment",							{ fg = c.fg2, italic = true })
-	hi("@comment.todo",					{ fg = c.yellow, bg = c.bg3, bold = true })
-	hi("@comment.error",					{ fg = c.red, bg = c.bg3, bold = true })
-	hi("@comment.warning",				{ fg = c.orange, bg = c.bg3, bold = true })
-	hi("@comment.note",					{ fg = c.cyan, bg = c.bg3, bold = true })
-	hi("@tag",									{ fg = c.blue_bright })
-	hi("@tag.attribute",					{ fg = c.orange })
-	hi("@tag.delimiter",					{ fg = c.fg2 })
-	hi("@markup.heading",				{ fg = c.orange, bold = true })
-	hi("@markup.bold",					{ bold = true })
+
+	-- Numbers: yellow
+	hi("@number",							{ fg = c.yellow })
+	hi("@boolean",							{ fg = c.yellow })
+	hi("@float",							{ fg = c.yellow })
+
+	-- Functions: cyan
+	hi("@function",							{ fg = c.cyan })
+	hi("@function.builtin",				{ fg = c.cyan })
+	hi("@function.call",					{ fg = c.cyan })
+	hi("@function.macro",					{ fg = c.cyan })
+	hi("@method",							{ fg = c.cyan })
+	hi("@method.call",						{ fg = c.cyan })
+	hi("@constructor",						{ fg = c.cyan })
+
+	-- Keywords: blue
+	hi("@keyword",							{ fg = c.blue })
+	hi("@keyword.function",					{ fg = c.blue })
+	hi("@keyword.operator",					{ fg = c.blue })
+	hi("@keyword.return",					{ fg = c.blue })
+	hi("@keyword.import",					{ fg = c.blue })
+	hi("@conditional",						{ fg = c.blue })
+	hi("@repeat",							{ fg = c.blue })
+	hi("@exception",						{ fg = c.blue })
+
+	-- Types: magenta
+	hi("@type",								{ fg = c.magenta })
+	hi("@type.builtin",						{ fg = c.magenta })
+	hi("@type.qualifier",					{ fg = c.blue })
+	hi("@type.definition",					{ fg = c.magenta })
+
+	-- Attributes and properties: base tones
+	hi("@attribute",						{ fg = c.base0 })
+	hi("@property",							{ fg = c.base0 })
+	hi("@field",							{ fg = c.base0 })
+	hi("@parameter",						{ fg = c.base0, italic = true })
+
+	-- Punctuation: recedes into background
+	hi("@punctuation.bracket",				{ fg = c.base00 })
+	hi("@punctuation.delimiter",			{ fg = c.base00 })
+	hi("@punctuation.special",				{ fg = c.orange })
+
+	-- Comments: lowest contrast (base00)
+	hi("@comment",							{ fg = c.base00, italic = true })
+	hi("@comment.todo",						{ fg = c.orange, bold = true })
+	hi("@comment.error",					{ fg = c.red, bold = true })
+	hi("@comment.warning",					{ fg = c.orange, bold = true })
+	hi("@comment.note",						{ fg = c.blue, bold = true })
+
+	-- Tags (JSX/HTML): cyan for element, base for attributes
+	hi("@tag",								{ fg = c.cyan })
+	hi("@tag.attribute",					{ fg = c.base0 })
+	hi("@tag.delimiter",					{ fg = c.base00 })
+
+	-- Markup
+	hi("@markup.heading",					{ fg = c.base2, bold = true })
+	hi("@markup.bold",						{ bold = true })
 	hi("@markup.italic",					{ italic = true })
-	hi("@markup.strikethrough",		{ strikethrough = true })
-	hi("@markup.underline",			   { underline = true })
-	hi("@markup.link",					{ fg = c.blue_bright, underline = true })
-	hi("@markup.link.url",				{ fg = c.blue_bright, underline = true })
+	hi("@markup.strikethrough",				{ strikethrough = true })
+	hi("@markup.underline",					{ underline = true })
+	hi("@markup.link",						{ fg = c.cyan, underline = true })
+	hi("@markup.link.url",					{ fg = c.cyan, underline = true })
 	hi("@markup.raw",						{ fg = c.green })
-	hi("@markup.list",					{ fg = c.orange })
+	hi("@markup.list",						{ fg = c.base0 })
 
 	-- ── LSP Semantic Tokens ─────────────────────────────────
-	hi("@lsp.type.class",				{ fg = c.cyan })
-	hi("@lsp.type.decorator",	   	{ fg = c.magenta })
-	hi("@lsp.type.enum",					{ fg = c.cyan })
-	hi("@lsp.type.enumMember",	   	{ fg = c.yellow })
-	hi("@lsp.type.function",			{ fg = c.blue })
-	hi("@lsp.type.interface",		   { fg = c.cyan })
-	hi("@lsp.type.macro",				{ fg = c.magenta })
-	hi("@lsp.type.method",				{ fg = c.blue })
-	hi("@lsp.type.namespace",	   	{ fg = c.cyan })
-	hi("@lsp.type.parameter",	   	{ fg = c.fg1, italic = true })
-	hi("@lsp.type.property",			{ fg = c.fg0 })
-	hi("@lsp.type.struct",				{ fg = c.cyan })
-	hi("@lsp.type.type",					{ fg = c.cyan })
-	hi("@lsp.type.typeParameter",	   { fg = c.cyan, italic = true })
-	hi("@lsp.type.variable",			{ fg = c.fg0 })
-	hi("@lsp.mod.deprecated",		   { fg = c.orange_dim, strikethrough = true })
-	hi("@lsp.mod.readonly",			   { fg = c.yellow })
+	hi("@lsp.type.class",					{ fg = c.magenta })
+	hi("@lsp.type.decorator",				{ fg = c.base0 })
+	hi("@lsp.type.enum",					{ fg = c.magenta })
+	hi("@lsp.type.enumMember",				{ fg = c.yellow })
+	hi("@lsp.type.function",				{ fg = c.cyan })
+	hi("@lsp.type.interface",				{ fg = c.magenta })
+	hi("@lsp.type.macro",					{ fg = c.blue })
+	hi("@lsp.type.method",					{ fg = c.cyan })
+	hi("@lsp.type.namespace",				{ fg = c.magenta })
+	hi("@lsp.type.parameter",				{ fg = c.base0, italic = true })
+	hi("@lsp.type.property",				{ fg = c.base0 })
+	hi("@lsp.type.struct",					{ fg = c.magenta })
+	hi("@lsp.type.type",					{ fg = c.magenta })
+	hi("@lsp.type.typeParameter",			{ fg = c.magenta, italic = true })
+	hi("@lsp.type.variable",				{ fg = c.base0 })
+	hi("@lsp.mod.deprecated",				{ fg = c.red_dim, strikethrough = true })
+	hi("@lsp.mod.readonly",					{ fg = c.yellow })
+
+	-- ── LSP UI ──────────────────────────────────────────────
+	hi("LspSignatureActiveParameter",		{ fg = c.base2, bold = true, underline = true })
 
 	-- ── Git Signs ───────────────────────────────────────────
 	hi("GitSignsAdd",						{ fg = c.green })
 	hi("GitSignsChange",					{ fg = c.yellow })
 	hi("GitSignsDelete",					{ fg = c.red })
-	hi("GitSignsCurrentLineBlame",	{ fg = c.fg3, italic = true })
+	hi("GitSignsCurrentLineBlame",			{ fg = c.base00, italic = true })
 
 	-- ── Telescope ───────────────────────────────────────────
-	hi("TelescopeNormal",				{ fg = c.fg1, bg = c.bg0 })
-	hi("TelescopeBorder",				{ fg = c.bg4, bg = c.bg0 })
-	hi("TelescopeTitle",					{ fg = c.orange, bold = true })
-	hi("TelescopePromptNormal",		{ fg = c.fg0, bg = c.bg2 })
-	hi("TelescopePromptBorder",		{ fg = c.bg4, bg = c.bg2 })
-	hi("TelescopePromptTitle",	   	{ fg = c.orange, bg = c.bg2, bold = true })
-	hi("TelescopePromptPrefix",		{ fg = c.orange, bg = c.bg2 })
-	hi("TelescopeResultsNormal",  	{ fg = c.fg1, bg = c.bg0 })
-	hi("TelescopeResultsBorder",  	{ fg = c.bg4, bg = c.bg0 })
-	hi("TelescopePreviewNormal",  	{ fg = c.fg1, bg = c.bg0 })
-	hi("TelescopePreviewBorder",  	{ fg = c.bg4, bg = c.bg0 })
-	hi("TelescopeSelection",			{ fg = c.fg0, bg = c.bg3 })
-	hi("TelescopeSelectionCaret",	   { fg = c.orange })
-	hi("TelescopeMatching",			   { fg = c.orange, bold = true })
+	hi("TelescopeNormal",					{ fg = c.base0, bg = c.base03 })
+	hi("TelescopeBorder",					{ fg = c.base00, bg = c.base03 })
+	hi("TelescopeTitle",					{ fg = c.base2, bold = true })
+	hi("TelescopePromptNormal",				{ fg = c.base0, bg = c.base01 })
+	hi("TelescopePromptBorder",				{ fg = c.base00, bg = c.base01 })
+	hi("TelescopePromptTitle",				{ fg = c.base2, bg = c.base01, bold = true })
+	hi("TelescopePromptPrefix",				{ fg = c.cyan, bg = c.base01 })
+	hi("TelescopeResultsNormal",			{ fg = c.base0, bg = c.base03 })
+	hi("TelescopeResultsBorder",			{ fg = c.base00, bg = c.base03 })
+	hi("TelescopePreviewNormal",			{ fg = c.base0, bg = c.base03 })
+	hi("TelescopePreviewBorder",			{ fg = c.base00, bg = c.base03 })
+	hi("TelescopeSelection",				{ fg = c.base2, bg = c.base00 })
+	hi("TelescopeSelectionCaret",			{ fg = c.cyan })
+	hi("TelescopeMatching",					{ fg = c.orange, bold = true })
 
 	-- ── Trouble ─────────────────────────────────────────────
-	hi("TroubleNormal",					{ fg = c.fg1, bg = c.bg0 })
-	hi("TroubleText",						{ fg = c.fg1 })
-	hi("TroubleCount",					{ fg = c.orange, bg = c.bg3 })
+	hi("TroubleNormal",						{ fg = c.base0, bg = c.base03 })
+	hi("TroubleText",						{ fg = c.base0 })
+	hi("TroubleCount",						{ fg = c.blue, bg = c.base01 })
 
 	-- ── Indent Blankline ────────────────────────────────────
-	hi("IblIndent",						{ fg = c.bg3, nocombine = true })
-	hi("IblScope",							{ fg = c.bg4, nocombine = true })
+	hi("IblIndent",							{ fg = c.base01, nocombine = true })
+	hi("IblScope",							{ fg = c.base00, nocombine = true })
 
 	-- ── Noice ───────────────────────────────────────────────
-	hi("NoiceCmdlinePopup",			   { fg = c.fg0, bg = c.bg0 })
-	hi("NoiceCmdlinePopupBorder",	   { fg = c.bg4, bg = c.bg0 })
-	hi("NoiceCmdlineIcon",				{ fg = c.orange })
-	hi("NoiceConfirm",					{ fg = c.fg0, bg = c.bg0 })
-	hi("NoiceConfirmBorder",			{ fg = c.bg4, bg = c.bg0 })
+	hi("NoiceCmdlinePopup",					{ fg = c.base0, bg = c.base03 })
+	hi("NoiceCmdlinePopupBorder",			{ fg = c.base00, bg = c.base03 })
+	hi("NoiceCmdlineIcon",					{ fg = c.cyan })
+	hi("NoiceConfirm",						{ fg = c.base0, bg = c.base03 })
+	hi("NoiceConfirmBorder",				{ fg = c.base00, bg = c.base03 })
 
 	-- ── Which-Key ───────────────────────────────────────────
-	hi("WhichKey",							{ fg = c.orange })
-	hi("WhichKeyGroup",					{ fg = c.blue })
-	hi("WhichKeyDesc",					{ fg = c.fg1 })
-	hi("WhichKeySeparator",		   	{ fg = c.fg3 })
-	hi("WhichKeyFloat",					{ bg = c.bg0 })
-	hi("WhichKeyValue",					{ fg = c.fg2 })
+	hi("WhichKey",							{ fg = c.cyan })
+	hi("WhichKeyGroup",						{ fg = c.magenta })
+	hi("WhichKeyDesc",						{ fg = c.base0 })
+	hi("WhichKeySeparator",					{ fg = c.base00 })
+	hi("WhichKeyFloat",						{ bg = c.base03 })
+	hi("WhichKeyValue",						{ fg = c.base00 })
 
 	-- ── Oil ─────────────────────────────────────────────────
-	hi("OilDir",							{ fg = c.blue, bold = true })
-	hi("OilFile",							{ fg = c.fg0 })
-	hi("OilSymlink",						{ fg = c.cyan })
+	hi("OilDir",							{ fg = c.cyan, bold = true })
+	hi("OilFile",							{ fg = c.base0 })
+	hi("OilSymlink",						{ fg = c.magenta })
+
+	-- ── Blink.cmp (completion) ──────────────────────────────
+	hi("BlinkCmpMenu",						{ fg = c.base0, bg = c.base03 })
+	hi("BlinkCmpMenuBorder",				{ fg = c.base00, bg = c.base03 })
+	hi("BlinkCmpMenuSelection",				{ fg = c.base2, bg = c.base00 })
+	hi("BlinkCmpLabel",						{ fg = c.base0 })
+	hi("BlinkCmpLabelMatch",				{ fg = c.orange, bold = true })
+	hi("BlinkCmpKind",						{ fg = c.base00 })
+	hi("BlinkCmpKindFunction",				{ fg = c.cyan })
+	hi("BlinkCmpKindMethod",				{ fg = c.cyan })
+	hi("BlinkCmpKindVariable",				{ fg = c.base0 })
+	hi("BlinkCmpKindKeyword",				{ fg = c.blue })
+	hi("BlinkCmpKindText",					{ fg = c.green })
+	hi("BlinkCmpKindClass",				{ fg = c.magenta })
+	hi("BlinkCmpKindStruct",				{ fg = c.magenta })
+	hi("BlinkCmpKindInterface",				{ fg = c.magenta })
+	hi("BlinkCmpKindModule",				{ fg = c.magenta })
+	hi("BlinkCmpKindProperty",				{ fg = c.base0 })
+	hi("BlinkCmpKindConstant",				{ fg = c.yellow })
+	hi("BlinkCmpKindEnum",					{ fg = c.magenta })
+	hi("BlinkCmpKindEnumMember",			{ fg = c.yellow })
+	hi("BlinkCmpKindSnippet",				{ fg = c.blue })
+	hi("BlinkCmpKindField",				{ fg = c.base0 })
 end
 
 --- Returns a lualine theme table
@@ -265,26 +336,26 @@ function M.lualine()
 	local c = require("eigengrau.palette")
 	return {
 		normal = {
-			a = { fg = c.bg1, bg = c.blue, gui = "bold" },
-			b = { fg = c.fg1, bg = c.bg3 },
-			c = { fg = c.fg2, bg = c.bg2 },
+			a = { fg = c.base02, bg = c.cyan, gui = "bold" },
+			b = { fg = c.base0, bg = c.base00 },
+			c = { fg = c.base00, bg = c.base01 },
 		},
 		insert = {
-			a = { fg = c.bg1, bg = c.green, gui = "bold" },
+			a = { fg = c.base02, bg = c.green, gui = "bold" },
 		},
 		visual = {
-			a = { fg = c.bg1, bg = c.magenta, gui = "bold" },
+			a = { fg = c.base02, bg = c.magenta, gui = "bold" },
 		},
 		replace = {
-			a = { fg = c.bg1, bg = c.red, gui = "bold" },
+			a = { fg = c.base02, bg = c.red, gui = "bold" },
 		},
 		command = {
-			a = { fg = c.bg1, bg = c.orange, gui = "bold" },
+			a = { fg = c.base02, bg = c.orange, gui = "bold" },
 		},
 		inactive = {
-			a = { fg = c.fg3, bg = c.bg2 },
-			b = { fg = c.fg3, bg = c.bg2 },
-			c = { fg = c.fg3, bg = c.bg2 },
+			a = { fg = c.base00, bg = c.base01 },
+			b = { fg = c.base00, bg = c.base01 },
+			c = { fg = c.base00, bg = c.base01 },
 		},
 	}
 end
