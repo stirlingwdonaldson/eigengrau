@@ -12,7 +12,7 @@
 return {
 	-- ── Base tones (monotone luminance ramp) ────────────────
 	base03 = "#002b36", -- darkest bg: floats, sidebars
-	base02 = "#073642", -- main editor bg
+	base02 = "#000000", -- main editor bg
 	base01 = "#586e75", -- bg emphasis: cursorline, selection
 	base00 = "#657b83", -- UI chrome: borders, statusline bg
 	base0  = "#839496", -- default foreground (body text)
